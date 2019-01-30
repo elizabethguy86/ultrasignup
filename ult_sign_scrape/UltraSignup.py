@@ -45,7 +45,7 @@ def make_finisher_df(content, idx_1):
     for row in finished:
         times.append(row[-2])
         gender.append(row[-4])
-    df = pd.DataFrame({'Gender': gender, 'Time': times}))
+    df = pd.DataFrame({'Gender': gender, 'Time': times})
     df['Time'] = cascade1002017['Time'].str.split(':')
     df['Time'] = cascade1002017['Time'].apply(lambda x: int(x[0]) * 60 + int(x[1]) + float(x[2])/60)
     return df
