@@ -50,7 +50,18 @@ def make_finisher_df(content, idx_1):
         times.append(row[-2])
         gender.append(row[-4])
     df = pd.DataFrame({'Gender': gender, 'Time': times})
-    df['Time'] = cascade1002017['Time'].str.split(':')
-    df['Time'] = cascade1002017['Time'].apply(lambda x: int(x[0]) * 60 + int(x[1]) + float(x[2])/60)
+    df['Time'] = df['Time'].str.split(':')
+    df['Time'] = df['Time'].apply(lambda x: int(x[0]) * 60 + int(x[1]) + float(x[2])/60)
     return df
 
+def make_DNF_counts(DNF):
+    '''Takes in the DNF list as an input
+    and returns the male and female proportional counts.'''
+    males = 0
+    females = 0
+    for row in DNF:
+        if row[-3] == 'M':
+            males +=1
+        else:
+            females += 1
+    return males/len(DNF), females/len(DNF)
